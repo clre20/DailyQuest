@@ -14,13 +14,18 @@ public final class MenuHolder implements InventoryHolder {
 
     public static final String SIGNATURE = "clre20:dailyquest";
 
-    public enum Type { MAIN, CONFIRM_REROLL, MAP, STREAK }
+    public enum Type { MAIN, CONFIRM_REROLL, MAP, STREAK, ADMIN_LIST, ADMIN_PLAYER, ADMIN_TASKS }
 
     private final Plugin plugin;
     private final Type type;
     private int page;
     private final int arg;
     private final Inventory inventory;
+    /** 管理選單：被管理的玩家（只存 UUID 與名稱）。 */
+    private java.util.UUID target;
+    private String targetName = "";
+    /** 管理選單：離線玩家的資料副本（只在選單開著時存在）。 */
+    private clre20.dailyQuest.data.PlayerData snapshot;
 
     MenuHolder(Plugin plugin, Type type, int page, int arg, int size, net.kyori.adventure.text.Component title) {
         this.plugin = plugin;
@@ -52,6 +57,27 @@ public final class MenuHolder implements InventoryHolder {
 
     public int arg() {
         return arg;
+    }
+
+    public java.util.UUID target() {
+        return target;
+    }
+
+    public String targetName() {
+        return targetName;
+    }
+
+    void target(java.util.UUID target, String name) {
+        this.target = target;
+        this.targetName = name == null ? "" : name;
+    }
+
+    clre20.dailyQuest.data.PlayerData snapshot() {
+        return snapshot;
+    }
+
+    void snapshot(clre20.dailyQuest.data.PlayerData snapshot) {
+        this.snapshot = snapshot;
     }
 
     @Override

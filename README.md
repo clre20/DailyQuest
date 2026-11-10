@@ -27,6 +27,11 @@ DailyQuest 是 Paper 26.x 的每日任務插件。玩家每天從自己所在階
   - 事件第一行先檢查「有沒有線上玩家有這種任務」，沒有就直接返回
   - 距離與在線時間用統計值定時取樣，不監聽玩家移動
   - 記憶體快取＋髒資料標記，定時批次寫入，單一 I/O 執行緒；YAML 或 SQLite 可選
+- **管理選單**
+  - `/dq admin` 開啟線上玩家列表，左鍵頭顱進入該玩家的面板
+  - 面板可切換階級、用 -10／-1／+1／+10 按鈕調整章數、連勝、補簽卷，重新抽今天的任務、直接完成任務
+  - `/dq admin <玩家>` 可管理離線玩家，修改直接寫入存檔；每次點擊都重新檢查權限
+  - 文字指令保留給後台與指令方塊
 - **其他**
   - PlaceholderAPI 變數、ActionBar 進度、音效
   - 開服與 `/dq version` 檢查 GitHub Releases 更新，結果快取 10 分鐘
@@ -41,6 +46,9 @@ DailyQuest 是 Paper 26.x 的每日任務插件。玩家每天從自己所在階
 | `/dq help` | 指令說明 | 玩家／後台 | `dailyquest.help` | 所有人 |
 | `/dq version` | 檢查更新；有新版時登入 3 秒後提醒 | 玩家／後台 | `dailyquest.version` | OP |
 | `/dq reload` | 重新讀取所有設定檔 | 玩家／後台 | `dailyquest.admin.reload` | OP |
+| `/dq admin` | 開啟管理選單（線上玩家列表） | 玩家 | `dailyquest.admin.manage` | OP |
+| `/dq admin <玩家>` | 開啟某位玩家的管理面板（可離線） | 玩家 | `dailyquest.admin.manage` | OP |
+| `/dq admin help` | 顯示完整文字管理指令 | 玩家／後台 | `dailyquest.admin.manage` | OP |
 | `/dq admin info <玩家>` | 查看玩家資料 | 玩家／後台 | `dailyquest.admin.manage` | OP |
 | `/dq admin reset <玩家>` | 重新抽今天的任務 | 玩家／後台 | `dailyquest.admin.manage` | OP |
 | `/dq admin complete <玩家> <第幾個>` | 直接完成任務 | 玩家／後台 | `dailyquest.admin.manage` | OP |

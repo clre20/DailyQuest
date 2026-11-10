@@ -31,7 +31,14 @@ help:
     - '&e/%label% version &7- 檢查更新'
   reload:
     - '&e/%label% reload &7- 重新讀取設定檔'
-  admin:
+  # 玩家看到的管理說明（主要用選單）
+  admin-menu:
+    - '&e/%label% admin &7- 開啟管理選單'
+    - '&e/%label% admin <玩家> &7- 直接管理某位玩家（可離線）'
+    - '&e/%label% admin itemstring &7- 取得手上物品的獎勵字串'
+    - '&8完整文字指令：/%label% admin help'
+  # 文字指令（後台、指令方塊）
+  admin-commands:
     - '&e/%label% admin info <玩家> &7- 查看玩家資料'
     - '&e/%label% admin reset <玩家> &7- 重新抽今天的任務（線上）'
     - '&e/%label% admin complete <玩家> <第幾個> &7- 直接完成任務（線上）'
@@ -243,6 +250,97 @@ gui:
     back: '&7返回主選單'
     to-streak: '&6切換到連勝路線'
     to-map: '&a切換到蓋章地圖'
+
+  admin:
+    back: '&7返回'
+    refresh: '&e重新整理'
+    minus: '&c%amount%'
+    plus: '&a%amount%'
+    loading-offline: '&7正在讀取 %player% 的資料...'
+    summary:
+      - '&7階級：%tier% &7(%stamps%/%cells%)'
+      - '&7連勝：&e%streak% &7(最高 %best%)  &7中斷前：&f%broken%'
+      - '&7補簽卷：&d%tickets%'
+      - '&7今日：&f%done%/%total% &7完成，剩餘重抽 %rerolls% 次'
+    list:
+      title: '&8每日任務管理 - 線上玩家'
+      player: '&e%player%'
+      loading:
+        - '&7資料讀取中'
+      click:
+        - ''
+        - '&e左鍵管理這位玩家'
+      info:
+        name: '&6說明'
+        lore:
+          - '&7線上玩家：&f%online%'
+          - '&7頁數：&f%page%&7/&f%pages%'
+          - ''
+          - '&7管理離線玩家：'
+          - '&f/dq admin <玩家>'
+    player:
+      title: '&8管理 - %player%'
+      no-data: '&c讀不到這位玩家的資料'
+      online:
+        - ''
+        - '&a在線'
+      offline:
+        - ''
+        - '&7離線（修改會直接寫入存檔）'
+      need-online:
+        - '&c玩家需要在線'
+      tier:
+        name: '&f階級：%tier%'
+        lore:
+          - '&7第 %index%/%count% 階'
+          - '&7本階章數：&f%stamps%&7/&f%cells%'
+      tier-prev:
+        name: '&c◀ 降到 %tier%'
+      tier-next:
+        name: '&a升到 %tier% ▶'
+      tier-change-lore:
+        - '&7左鍵切換階級'
+        - '&c本階章數會歸零'
+      stamps:
+        name: '&f本階章數：&e%value%'
+        lore:
+          - '&7兩側按鈕左鍵加減'
+          - '&8不會發放格子獎勵'
+      streak:
+        name: '&f連勝：&e%value% &f天'
+        lore:
+          - '&7兩側按鈕左鍵加減'
+          - '&8會清除中斷紀錄，不會發放連勝獎勵'
+      tickets:
+        name: '&f補簽卷：&d%value% &f張'
+        lore:
+          - '&7兩側按鈕左鍵加減'
+      reset:
+        name: '&e重新抽今天的任務'
+        lore:
+          - '&7今天的進度與重抽次數會重置'
+          - '&7已蓋的章不會重複蓋'
+          - ''
+          - '&e左鍵執行'
+      tasks:
+        name: '&b今日任務'
+        lore:
+          - '&7完成：&f%done%/%total%'
+          - ''
+          - '&e左鍵查看'
+    tasks:
+      title: '&8今日任務 - %player%'
+      name: '&f%index%. %task%'
+      lore:
+        - '&7進度：&f%progress%/%amount%'
+        - '&7狀態：%state%'
+        - '&8%key%'
+      click:
+        - ''
+        - '&e左鍵直接完成'
+      state-active: '&e進行中'
+      state-done: '&a已完成'
+      state-claimed: '&8已領取'
 
 admin:
   info:

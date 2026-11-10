@@ -123,14 +123,19 @@ public final class DqCommand implements TabExecutor {
         if (s.hasPermission(P_HELP)) msg().sendList(s, "help.help", "label", label);
         if (s.hasPermission(P_VERSION)) msg().sendList(s, "help.version", "label", label);
         if (s.hasPermission(P_RELOAD)) msg().sendList(s, "help.reload", "label", label);
-        if (s.hasPermission(P_MANAGE)) msg().sendList(s, "help.admin", "label", label);
+        if (s.hasPermission(P_MANAGE)) msg().sendList(s, s instanceof Player ? "help.admin-menu" : "help.admin-commands", "label", label);
     }
 
     // ------------------------------------------------------------ admin
 
     private void admin(CommandSender s, String label, String[] args) {
         if (args.length < 2) {
-            msg().sendList(s, "help.admin", "label", label);
+            // 玩家：開管理選單；後台：顯示文字指令說明
+            if (s instanceof Player p) {
+                if (notSpamming(p)) plugin.adminMenus().openList(p, 0);
+            } else {
+                msg().sendList(s, "help.admin-commands", "label", label);
+            }
             return;
         }
         String sub = args[1].toLowerCase(Locale.ROOT);
@@ -138,8 +143,25 @@ public final class DqCommand implements TabExecutor {
             itemString(s);
             return;
         }
+        if (sub.equals("help")) {
+            msg().sendList(s, "help.admin-commands", "label", label);
+            return;
+        }
+        if (!ADMIN_SUBS.contains(sub) && args.length == 2) {
+            // /dq admin <玩家>：開啟該玩家的管理面板（可離線）
+            if (!(s instanceof Player p)) {
+                msg().sendList(s, "help.admin-commands", "label", label);
+                return;
+            }
+            UUID uuid = resolve(s, args[1]);
+            if (uuid != null && notSpamming(p)) {
+                Player online = Bukkit.getPlayer(uuid);
+                plugin.adminMenus().openPlayer(p, uuid, online != null ? online.getName() : args[1]);
+            }
+            return;
+        }
         if (!ADMIN_SUBS.contains(sub) || args.length < 3) {
-            msg().sendList(s, "help.admin", "label", label);
+            msg().sendList(s, "help.admin-commands", "label", label);
             return;
         }
         // ticket 的格式是 ticket <give|take|set> <玩家> <數量>，其他都是 <子指令> <玩家> ...
@@ -163,7 +185,7 @@ public final class DqCommand implements TabExecutor {
             }
             case "settier" -> {
                 if (args.length < 4) {
-                    msg().sendList(s, "help.admin", "label", label);
+                    msg().sendList(s, "help.admin-commands", "label", label);
                     return;
                 }
                 Tier tier = quest().defs().tier(args[3]);
@@ -188,12 +210,12 @@ public final class DqCommand implements TabExecutor {
             }
             case "ticket" -> {
                 if (args.length < 4) {
-                    msg().sendList(s, "help.admin", "label", label);
+                    msg().sendList(s, "help.admin-commands", "label", label);
                     return;
                 }
                 String op = args[2].toLowerCase(Locale.ROOT);
                 if (!op.equals("give") && !op.equals("take") && !op.equals("set")) {
-                    msg().sendList(s, "help.admin", "label", label);
+                    msg().sendList(s, "help.admin-commands", "label", label);
                     return;
                 }
                 Integer n = number(s, args, 4, 0, MAX_NUMBER);
@@ -208,7 +230,7 @@ public final class DqCommand implements TabExecutor {
                     d.dirty = true;
                 }, () -> msg().send(s, "admin.ticket-" + op, "player", name, "amount", String.valueOf(n)));
             }
-            default -> msg().sendList(s, "help.admin", "label", label);
+            default -> msg().sendList(s, "help.admin-commands", "label", label);
         }
     }
 
@@ -329,7 +351,7 @@ public final class DqCommand implements TabExecutor {
             done.run();
             return;
         }
-        plugin.data().modifyOffline(uuid, change, done);
+        plugin.data().modifyOffline(uuid, change, d -> done.run());
     }
 
     // ------------------------------------------------------------ Tab
@@ -350,7 +372,12 @@ public final class DqCommand implements TabExecutor {
         }
         String sub = args[1].toLowerCase(Locale.ROOT);
         if (args.length == 2) {
-            return filter(new ArrayList<>(ADMIN_SUBS), args[1]);
+            out.addAll(ADMIN_SUBS);
+            out.add("help");
+            if (s instanceof Player) {
+                for (Player p : Bukkit.getOnlinePlayers()) out.add(p.getName());
+            }
+            return filter(out, args[1]);
         }
         if (sub.equals("itemstring")) {
             return out;

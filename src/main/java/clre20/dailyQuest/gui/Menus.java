@@ -59,6 +59,7 @@ public final class Menus {
     private final RewardService rewards;
     private PluginConfig cfg;
     private Messages msg;
+    private AdminMenus admin;
 
     public Menus(Plugin plugin, DataManager data, QuestService quest, RewardService rewards, PluginConfig cfg, Messages msg) {
         this.plugin = plugin;
@@ -72,6 +73,10 @@ public final class Menus {
     public void reload(PluginConfig cfg, Messages msg) {
         this.cfg = cfg;
         this.msg = msg;
+    }
+
+    public void setAdmin(AdminMenus admin) {
+        this.admin = admin;
     }
 
     private PlayerData dataOf(Player p) {
@@ -389,6 +394,9 @@ public final class Menus {
             case CONFIRM_REROLL -> clickConfirm(p, d, h, slot);
             case MAP -> clickTrack(p, d, h, slot, true);
             case STREAK -> clickTrack(p, d, h, slot, false);
+            case ADMIN_LIST, ADMIN_PLAYER, ADMIN_TASKS -> {
+                if (admin != null) admin.click(p, h, slot);
+            }
         }
     }
 
@@ -500,7 +508,7 @@ public final class Menus {
 
     // ------------------------------------------------------------ 物品工具
 
-    private ItemStack filler() {
+    ItemStack filler() {
         ItemStack it = new ItemStack(cfg.guiFiller);
         ItemMeta meta = it.getItemMeta();
         meta.displayName(Component.text(" "));
@@ -509,21 +517,21 @@ public final class Menus {
         return it;
     }
 
-    private void fill(Inventory inv) {
+    void fill(Inventory inv) {
         ItemStack f = filler();
         for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, f);
         }
     }
 
-    private static ItemStack item(Material m, Component name, List<Component> lore, int amount, boolean glow) {
+    static ItemStack item(Material m, Component name, List<Component> lore, int amount, boolean glow) {
         ItemStack it = new ItemStack(m);
         decorate(it, name, lore, glow);
         it.setAmount(Math.max(1, Math.min(99, amount)));
         return it;
     }
 
-    private static void decorate(ItemStack it, Component name, List<Component> lore, boolean glow) {
+    static void decorate(ItemStack it, Component name, List<Component> lore, boolean glow) {
         ItemMeta meta = it.getItemMeta();
         if (meta == null) return;
         meta.displayName(name);

@@ -9,6 +9,7 @@ import clre20.dailyQuest.data.SqliteStorage;
 import clre20.dailyQuest.data.Storage;
 import clre20.dailyQuest.data.YamlStorage;
 import clre20.dailyQuest.economy.Economies;
+import clre20.dailyQuest.gui.AdminMenus;
 import clre20.dailyQuest.gui.GuiListener;
 import clre20.dailyQuest.gui.MenuHolder;
 import clre20.dailyQuest.gui.Menus;
@@ -42,6 +43,7 @@ public final class DailyQuest extends JavaPlugin {
     private DataManager data;
     private QuestService quest;
     private Menus menus;
+    private AdminMenus adminMenus;
     private ProgressListener progressListener;
     private PlayerListener playerListener;
     private UpdateChecker updates;
@@ -62,6 +64,8 @@ public final class DailyQuest extends JavaPlugin {
         rewards = new RewardService(this, economies, settings, messages);
         quest = new QuestService(data, rewards, settings, messages, defs);
         menus = new Menus(this, data, quest, rewards, settings, messages);
+        adminMenus = new AdminMenus(this, menus);
+        menus.setAdmin(adminMenus);
         progressListener = new ProgressListener(quest, new PlacedBlocks(settings.placedCacheSize), settings);
         playerListener = new PlayerListener(this);
         updates = new UpdateChecker(this, settings.updateRepository, messages);
@@ -225,6 +229,10 @@ public final class DailyQuest extends JavaPlugin {
 
     public Menus menus() {
         return menus;
+    }
+
+    public AdminMenus adminMenus() {
+        return adminMenus;
     }
 
     public UpdateChecker updates() {

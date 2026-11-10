@@ -110,10 +110,11 @@ public final class DataManager {
      * 在 I/O 執行緒讀取、修改、寫回；之後在主執行緒若發現玩家已經讀進快取，對快取再套用一次
      * （因為讀取和修改在同一條執行緒依序進行，快取裡的是修改前的版本）。
      */
-    public void modifyOffline(UUID uuid, Consumer<PlayerData> change, Runnable done) {
+    public void modifyOffline(UUID uuid, Consumer<PlayerData> change, Consumer<PlayerData> done) {
         submit(() -> {
+            PlayerData d;
             try {
-                PlayerData d = PlayerData.deserialize(uuid, storage.load(uuid), typeCount);
+                d = PlayerData.deserialize(uuid, storage.load(uuid), typeCount);
                 change.accept(d);
                 storage.save(uuid, d.serialize(), d.lastSeenDay);
             } catch (Exception e) {
@@ -126,7 +127,7 @@ public final class DataManager {
                     change.accept(cached);
                     cached.dirty = true;
                 }
-                done.run();
+                done.accept(cached != null ? cached : d);
             });
         });
     }
