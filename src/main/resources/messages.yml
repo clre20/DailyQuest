@@ -1,0 +1,288 @@
+# ==========================================================
+#  DailyQuest 訊息檔
+#  顏色：&a、&l 等；十六進位顏色：&#ff8800
+#  啟動與 /dq reload 時會自動補上缺少的項目。留空字串＝不送出該訊息。
+# ==========================================================
+
+messages-version: 1
+
+prefix: '&8[&6每日任務&8] &r'
+
+general:
+  no-permission: '&c你沒有權限使用這個指令。'
+  player-only: '&c只有玩家可以使用這個指令。'
+  unknown-command: '&c未知的指令，輸入 &e/%label% help &c查看說明。'
+  loading: '&7資料讀取中，請稍候再試。'
+  reloaded: '&a已重新讀取設定（%tiers% 個階級、%tasks% 個任務）。'
+  invalid-number: '&c請輸入 %min% ～ %max% 之間的整數。'
+  player-not-found: '&c找不到玩家 &e%player%&c（必須曾經進入過伺服器）。'
+  player-not-online: '&c玩家 &e%player% &c不在線上。'
+
+help:
+  header:
+    - '&6&l每日任務 &7指令說明'
+  use:
+    - '&e/%label% &7- 開啟每日任務選單'
+    - '&e/%label% map &7- 開啟蓋章地圖'
+    - '&e/%label% streak &7- 開啟連勝路線'
+  help:
+    - '&e/%label% help &7- 顯示這個說明'
+  version:
+    - '&e/%label% version &7- 檢查更新'
+  reload:
+    - '&e/%label% reload &7- 重新讀取設定檔'
+  admin:
+    - '&e/%label% admin info <玩家> &7- 查看玩家資料'
+    - '&e/%label% admin reset <玩家> &7- 重新抽今天的任務（線上）'
+    - '&e/%label% admin complete <玩家> <第幾個> &7- 直接完成任務（線上）'
+    - '&e/%label% admin settier <玩家> <階級ID> &7- 設定階級（章數歸零）'
+    - '&e/%label% admin setstamps <玩家> <數量> &7- 設定本階章數'
+    - '&e/%label% admin setstreak <玩家> <天數> &7- 設定連勝天數'
+    - '&e/%label% admin ticket <give|take|set> <玩家> <數量> &7- 補簽卷'
+    - '&e/%label% admin itemstring &7- 取得手上物品的獎勵字串'
+
+daily:
+  reset: '&e新的一天開始了！今天的任務已經更新，輸入 &6/dq &e查看。'
+
+progress:
+  actionbar: '&e%task% &7(&f%progress%&7/&f%amount%&7)'
+
+task:
+  completed: '&a✔ 完成任務：&f%task% &7(%done%/%total%) &e到選單左鍵領取獎勵。'
+  completed-auto: '&a✔ 完成任務：&f%task% &7(%done%/%total%)'
+
+claim:
+  already: '&7這個任務的獎勵已經領過了。'
+  nothing: '&7目前沒有可以領取的任務獎勵。'
+
+reroll:
+  success: '&a已重抽為：&f%task% &7（今天還剩 %left% 次）'
+  no-rerolls: '&c今天的重抽次數已經用完了。'
+  completed: '&c已完成的任務不能重抽。'
+  no-candidate: '&c這一階已經沒有其他任務可以換了（沒有扣次數）。'
+  invalid: '&c這個任務已經不存在，請重新開啟選單。'
+
+pending:
+  empty: '&7沒有待領取的物品。'
+  claimed: '&a已領取 %count% 樣物品。'
+  claimed-partial: '&e已領取 %count% 樣物品，背包滿了，還有 %left% 樣在待領取清單。'
+
+stamp:
+  stamped: '&6✦ 蓋章！&f%tier% &7進度 &e%stamps%&7/&e%cells%'
+  stamped-max: '&6✦ 今天的章蓋好了！&7（%tier% 已經蓋滿，等待下一階開放）'
+  tier-up: '&d&l升階！&f%player% &7完成了 %tier% &7，晉升為 %next%&7！'
+  max-tier: '&d&l恭喜！&f你已經蓋滿最高階 %tier%&f，之後開放新的階級會自動接續。'
+
+streak:
+  increased: '&6✹ 連勝 &e%streak% &6天！'
+  broken-login: '&c你的連勝在 &e%prev% &c天時中斷了！&7使用 &e%cost% &7張補簽卷可以接回（你有 %tickets% 張），請輸入 &e/dq streak &7並點擊補簽。'
+  patched: '&a已使用 %cost% 張補簽卷，連勝恢復為 &e%streak% &a天！（剩餘 %tickets% 張）'
+  patch-none: '&7你的連勝沒有中斷，不需要補簽。'
+  patch-expired: '&c這次中斷已經超過可以補簽的期限。'
+  patch-not-enough: '&c補簽卷不足：需要 %cost% 張，你只有 %tickets% 張。'
+
+reward:
+  title-task: '&a獲得任務獎勵 &7- &f%task%'
+  title-all-complete: '&6&l今天的任務全部完成！&a獲得額外獎勵：'
+  title-stamp: '&6蓋章獎勵：'
+  title-cell: '&6%tier% &6第 %cell% 格獎勵：'
+  title-streak: '&6連勝 %streak% 天獎勵：'
+  inventory-full: '&e背包已滿，物品已放進待領取清單（%count% 樣），到選單領取。'
+  line-money: '&e  ✦ 錢 %amount%'
+  line-currency: '&b  ✦ 企鵝幣 %amount%'
+  line-tickets: '&d  ✦ 補簽卷 x%amount%'
+  line-item: '&f  ✦ %item% &7x%amount%'
+  # 有指令獎勵時顯示的說明（留空＝不顯示）
+  line-command: '&7  ✦ 神秘獎勵'
+
+gui:
+  stamped-yes: '&a是'
+  stamped-no: '&7否'
+  unknown-date: '&8未知'
+  bar-filled: '&a▌'
+  bar-empty: '&8▌'
+  reward-header: '&6獎勵：'
+
+  main:
+    title: '&8每日任務 &7- %tier%'
+    info:
+      name: '&6%player% 的每日任務'
+      lore:
+        - '&7階級：%tier% &7(&f%stamps%&7/&f%cells% 章)'
+        - '&7今日完成：&f%done%&7/&f%total% &8（完成 %threshold% 個就能蓋章）'
+        - '&7今天已蓋章：%stamped%'
+        - '&7連勝：&e%streak% &7天 &8（最高 %best%）'
+        - '&7補簽卷：&d%tickets% &7張'
+        - '&7剩餘重抽：&f%rerolls% &7次'
+        - '&7距離重置：&f%reset%'
+    no-tasks:
+      name: '&c今天沒有任務'
+      lore:
+        - '&7這一階的任務池是空的，請通知管理員。'
+    map:
+      name: '&a蓋章地圖'
+      lore:
+        - '&7目前階級：%tier%'
+        - '&7進度：&f%stamps%&7/&f%cells%'
+        - ''
+        - '&e左鍵開啟'
+    streak:
+      name: '&6連勝路線'
+      lore:
+        - '&7目前連勝：&e%streak% &7天'
+        - '&7最高連勝：&f%best% &7天'
+        - ''
+        - '&e左鍵開啟'
+      lore-broken:
+        - '&c連勝已中斷！'
+        - '&7補簽需要 &e%cost% &7張（你有 %tickets% 張）'
+        - ''
+        - '&e左鍵開啟並補簽'
+    claim-all:
+      name: '&a一鍵領取'
+      lore:
+        - '&7可領取的任務獎勵：&f%count%'
+        - ''
+        - '&e左鍵領取全部'
+    pending:
+      name: '&b待領取物品'
+      lore:
+        - '&7背包滿時放在這裡的物品：&f%count% &7樣'
+        - ''
+        - '&e左鍵領取'
+
+  task:
+    name: '&f%task%'
+    name-done: '&a✔ %task%'
+    name-claimed: '&8✔ %task%'
+    unknown: '&c未知任務'
+    lore:
+      - '&7階級：%tier%'
+      - '&7進度：%bar% &f%progress%&7/&f%amount%'
+      - ''
+    status-claim:
+      - ''
+      - '&a已完成 &7- &e左鍵領取獎勵'
+    status-claimed:
+      - ''
+      - '&8獎勵已領取'
+    status-reroll:
+      - ''
+      - '&7左鍵：重抽這個任務 &8(今天還剩 %left% 次)'
+    status-no-reroll:
+      - ''
+      - '&8今天的重抽次數已用完'
+
+  confirm:
+    title: '&8確定要重抽？'
+    accept:
+      name: '&a確定重抽'
+      lore:
+        - '&7換成同一階的另一個任務'
+        - '&7今天還剩 &f%left% &7次'
+    cancel:
+      name: '&c取消'
+      lore: []
+
+  cell:
+    done-name: '&a第 %cell% 格 ✔'
+    next-name: '&e第 %cell% 格'
+    locked-name: '&7第 %cell% 格'
+    done-lore:
+      - '&7蓋章日期：&f%date%'
+    next-lore:
+      - '&e下一個要蓋的章'
+    locked-lore: []
+
+  map:
+    title: '&8蓋章地圖 - %tier%'
+    final-lore:
+      - '&d最後一格：蓋滿後升到下一階'
+    info:
+      name: '%tier%'
+      lore:
+        - '&7本階進度：&f%stamps%&7/&f%cells%'
+        - '&7頁數：&f%page%&7/&f%pages%'
+        - ''
+        - '&6所有階級：'
+    tier-done: '&a✔ %tier% &8(%cells% 格)'
+    tier-current: '&e▶ %tier% &7(%stamps%/%cells%)'
+    tier-locked: '&8✖ %tier% (%cells% 格)'
+
+  streak:
+    title: '&8連勝路線'
+    cell-done-lore:
+      - '&a已達成'
+    cell-next-lore:
+      - '&e下一天'
+    cell-locked-lore: []
+    final-lore-loop:
+      - '&d最後一格：走到這裡後從第 1 格重新開始'
+    final-lore-stay:
+      - '&d最後一格'
+    info:
+      name: '&6連勝'
+      lore:
+        - '&7目前連勝：&e%streak% &7天'
+        - '&7最高連勝：&f%best% &7天'
+        - '&7補簽卷：&d%tickets% &7張'
+        - '&7路線長度：&f%length% &7格'
+        - '&7頁數：&f%page%&7/&f%pages%'
+    patch:
+      name: '&d使用補簽卷'
+      lore:
+        - '&c連勝在 &e%prev% &c天時中斷'
+        - '&7中斷期間：&f%from% &7～ &f%to%'
+        - '&7需要：&e%cost% &7張（你有 %tickets% 張）'
+        - ''
+        - '&e左鍵補簽'
+
+  nav:
+    prev: '&e上一頁'
+    next: '&e下一頁'
+    back: '&7返回主選單'
+    to-streak: '&6切換到連勝路線'
+    to-map: '&a切換到蓋章地圖'
+
+admin:
+  info:
+    - '&6===== %player% ====='
+    - '&7階級：%tier% &7(%stamps%/%cells%)'
+    - '&7連勝：&e%streak% &7(最高 %best%)  &7中斷前：&f%broken%'
+    - '&7補簽卷：&d%tickets%  &7待領物品：&f%pending%'
+    - '&7今日：&f%done%/%total% &7完成，剩餘重抽 %rerolls% 次'
+  info-task:
+    - '&7 %index%. &f%task% &7%progress%/%amount% %state%'
+  state-active: '&e進行中'
+  state-done: '&a已完成'
+  state-claimed: '&8已領取'
+  reset: '&a已重新抽 %player% 今天的任務。'
+  completed: '&a已完成 %player% 的第 %index% 個任務。'
+  complete-failed: '&c第 %index% 個任務不存在或已經完成。'
+  unknown-tier: '&c找不到階級 &e%tier%&c。'
+  set-tier: '&a已將 %player% 設為 %tier%&a（章數歸零）。'
+  set-stamps: '&a已將 %player% 的本階章數設為 %value%。'
+  set-streak: '&a已將 %player% 的連勝設為 %value% 天。'
+  ticket-give: '&a已給 %player% %amount% 張補簽卷。'
+  ticket-take: '&a已扣除 %player% %amount% 張補簽卷。'
+  ticket-set: '&a已將 %player% 的補簽卷設為 %amount% 張。'
+  itemstring: '&a點擊複製：&f'
+  itemstring-hover: '&7點擊複製到剪貼簿，貼到獎勵的 items 裡'
+  itemstring-empty: '&c請先把物品拿在手上。'
+  itemstring-too-long: '&c這個物品的資料太長，無法輸出。'
+
+update:
+  checking: '&7正在檢查更新...'
+  newer:
+    - '&e發現新版本 &av%latest%&e！目前版本 v%current%'
+    - '&7下載：&f%url%'
+  latest:
+    - '&a目前已是最新版本（v%current%）。'
+  dev:
+    - '&b目前版本 v%current% 比 GitHub 上的 v%latest% 新（開發版）。'
+  no-release:
+    - '&7GitHub 上還沒有發布任何版本（目前 v%current%）。'
+  error:
+    - '&c檢查更新失敗：%error%'
+  disabled:
+    - '&7沒有設定 GitHub 倉庫，未檢查更新。'

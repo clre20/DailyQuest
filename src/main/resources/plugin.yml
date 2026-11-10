@@ -1,0 +1,44 @@
+name: DailyQuest
+description: '${project.description}'
+prefix: DailyQuest
+version: '${version}'
+
+main: clre20.dailyQuest.DailyQuest
+api-version: '26.1.1'
+load: POSTWORLD
+
+authors: [ Clre20 ]
+website: https://github.com/clre20/DailyQuest
+softdepend: [ Vault, ExcellentEconomy, PlaceholderAPI ]
+
+commands:
+  dailyquest:
+    description: 每日任務
+    usage: /<command> [help|map|streak|version|reload|admin]
+    aliases: [ dq ]
+
+permissions:
+  dailyquest.use:
+    description: 開啟每日任務選單（領獎、重抽、補簽都在選單裡）
+    default: true
+  dailyquest.help:
+    description: 查看指令說明
+    default: true
+  dailyquest.version:
+    description: 檢查更新，並在登入時收到新版本提醒
+    default: op
+  dailyquest.admin.reload:
+    description: 重新讀取設定檔
+    default: op
+  dailyquest.admin.manage:
+    description: 管理玩家資料（階級、章數、連勝、補簽卷等）
+    default: op
+  dailyquest.admin:
+    description: 所有管理權限
+    default: op
+    children:
+      dailyquest.use: true
+      dailyquest.help: true
+      dailyquest.version: true
+      dailyquest.admin.reload: true
+      dailyquest.admin.manage: true

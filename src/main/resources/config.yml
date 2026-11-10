@@ -1,0 +1,117 @@
+# ==========================================================
+#  DailyQuest 設定檔
+#  啟動與 /dq reload 時會自動補上缺少的項目，並保留你修改過的值。
+#  階級與蓋章獎勵在 tiers.yml；連勝路線在 streak.yml；
+#  每日全部完成、每次蓋章的獎勵在 rewards.yml；任務池在 tasks.yml。
+# ==========================================================
+
+# 設定檔版本（請勿修改）
+config-version: 1
+
+daily:
+  # 時區（Java ZoneId，例如 Asia/Taipei、UTC）
+  timezone: 'Asia/Taipei'
+  # 每日重置時間（HH:mm）
+  reset-time: '00:00'
+  # 每天抽幾個任務
+  tasks-per-day: 10
+  # 每天可以重抽幾次（一次換一個任務）
+  rerolls-per-day: 5
+  # 一天完成幾個任務就能蓋一個章（同時算一天連勝）
+  stamp-threshold: 5
+  # true＝任務完成時自動發獎勵；false＝要到選單左鍵領取
+  auto-claim: false
+  # 升階時對全服廣播（false＝只通知本人）
+  broadcast-tier-up: true
+
+makeup:
+  # 連勝中斷後，最多能補幾天（中斷超過這個天數就無法補簽）
+  max-missed-days: 3
+  # 中斷結束（重新開始蓋章）後，幾天內還能補簽
+  expire-days: 3
+  # 補上的天數是否算進連勝天數
+  count-patched-days: true
+  # 登入時提示連勝中斷
+  login-notify: true
+  # 登入幾秒後提示
+  login-notify-delay-seconds: 3
+
+anti-abuse:
+  # 創造模式不算任務進度
+  ignore-creative: true
+  # 玩家自己放置的方塊再挖掉不算（記錄在記憶體，重開服後清空）
+  ignore-player-placed-blocks: true
+  # 每個世界最多記錄幾個玩家放置的方塊（超過時忘記最舊的）
+  placed-block-cache-size: 50000
+  # 生怪磚生出的生物不算擊殺
+  ignore-spawner-mobs: true
+  # 生怪蛋生出的生物不算擊殺
+  ignore-spawn-egg-mobs: true
+  # 玩家丟出的物品被撿起不算「拾取」
+  ignore-thrown-items: true
+
+# 不計算任務進度的世界（不分大小寫）
+disabled-worlds: []
+
+progress:
+  # 距離與在線時間類任務的取樣間隔（秒）
+  sample-seconds: 10
+  # 進度增加時在 ActionBar 顯示
+  actionbar: true
+  # 同一位玩家 ActionBar 最短顯示間隔（毫秒）
+  actionbar-interval-ms: 1000
+  # 音效（留空＝不播放），格式：音效名稱 音量 音調
+  sound-task-complete: 'entity.player.levelup 1 1.2'
+  sound-stamp: 'ui.toast.challenge_complete 1 1'
+  sound-reroll: 'item.book.page_turn 1 1'
+  sound-claim: 'entity.experience_orb.pickup 1 1'
+  sound-error: 'entity.villager.no 1 1'
+
+economy:
+  # 錢（Vault）。沒裝 Vault 或沒有經濟插件時，錢的獎勵會略過並在後台警告
+  vault: true
+  # 第二貨幣
+  second-currency:
+    enabled: true
+    # 目前支援 EXCELLENT_ECONOMY；也可以設 COMMAND 只用下方指令發放
+    provider: 'EXCELLENT_ECONOMY'
+    # ExcellentEconomy 的貨幣 ID
+    currency-id: 'penguin'
+    # 是否允許小數（企鵝幣不允許）
+    decimal: false
+    # API 無法使用時改用後台指令發放（留空＝不使用）。變數：%player% %amount%
+    fallback-command: ''
+
+pending-items:
+  # 背包滿時，物品放進待領取清單的上限；超過時掉在玩家腳下
+  max: 100
+
+storage:
+  # yaml 或 sqlite（改了要重開服才會生效）
+  type: 'yaml'
+  # 定時存檔間隔（秒），只寫入有變動的玩家
+  autosave-seconds: 300
+  # 幾天沒上線就刪除玩家資料（0＝不刪除）
+  purge-inactive-days: 0
+
+gui:
+  # 選單空白處的填充物品
+  filler: 'GRAY_STAINED_GLASS_PANE'
+  # 同一位玩家兩次點擊的最短間隔（毫秒），防止連點
+  click-cooldown-ms: 250
+  # 蓋章地圖與連勝路線的格子物品
+  cell:
+    done: 'LIME_STAINED_GLASS_PANE'
+    done-reward: 'LIME_STAINED_GLASS'
+    next: 'YELLOW_STAINED_GLASS_PANE'
+    locked: 'WHITE_STAINED_GLASS_PANE'
+    locked-reward: 'CHEST'
+    final: 'NETHER_STAR'
+
+update-checker:
+  # GitHub 倉庫（Owner/Repo）
+  repository: 'clre20/DailyQuest'
+  # 開服時在後台檢查更新
+  check-on-startup: true
+  # 有新版本時，具 dailyquest.version 權限的管理員登入 3 秒後提醒
+  notify-on-join: true

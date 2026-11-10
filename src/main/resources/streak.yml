@@ -1,0 +1,38 @@
+# ==========================================================
+#  DailyQuest 連勝路線
+#  一天蓋到章＝連勝 +1；有一天沒蓋到就中斷（可用補簽卷補回）。
+#  這個檔案只在不存在時產生，不會自動補齊。獎勵格式見 tiers.yml 開頭的說明。
+# ==========================================================
+
+# 路線長度（格），最後一格就是連勝的「底」
+length: 50
+
+# 走到底之後：LOOP＝從第 1 格重新開始（獎勵可以再拿）；STAY＝停在最後一格（之後沒有路線獎勵）
+after-end: LOOP
+
+# 每隔幾格給一次固定獎勵（0＝不使用）；該格在 day-rewards 有設定時，以 day-rewards 為主
+interval: 5
+interval-reward:
+  money: 100
+
+# 指定格子的獎勵
+day-rewards:
+  '10':
+    money: 300
+    tickets: 1
+  '20':
+    money: 600
+    currency: 5
+  '30':
+    money: 1000
+    currency: 10
+    tickets: 1
+  '40':
+    money: 1500
+    currency: 15
+  '50':
+    money: 3000
+    currency: 30
+    tickets: 2
+    items:
+      - 'diamond 5'

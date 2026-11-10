@@ -1,0 +1,2342 @@
+# ==========================================================
+#  DailyQuest 任務池
+#  第一層是階級 ID（要和 tiers.yml 相同），第二層是任務 ID（同一階內不可重複）。
+#  這個檔案只在不存在時產生，不會自動補齊，請放心修改。
+#
+#  type    任務類型（見 README），例如 BREAK_BLOCK、KILL_ENTITY、WALK
+#  targets 目標（方塊／物品／生物）；不填＝任何目標都算。
+#          可以用標籤，例如 '#minecraft:logs'
+#  amount  需要的數量（距離類單位是格，PLAYTIME 單位是分鐘）
+#  display 顯示名稱，%amount% 會換成數量
+#  icon    選單圖示
+#  weight  抽中的權重（預設 1）
+#  reward  完成獎勵；不填就用 tiers.yml 裡該階的 task-reward
+# ==========================================================
+
+novice:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 64
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 32
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 64
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 16
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 64
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 32
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 32
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 10
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 10
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 8
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  fish:
+    type: FISH
+    amount: 5
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 32
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  craft:
+    type: CRAFT
+    amount: 32
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 4
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 5
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 3
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  eat:
+    type: CONSUME
+    amount: 10
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 64
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 100
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  jump:
+    type: JUMP
+    amount: 100
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 20
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 16
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 500
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 300
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  playtime:
+    type: PLAYTIME
+    amount: 30
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+apprentice:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 96
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 48
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 96
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 24
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 18
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 96
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 48
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 48
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 48
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 15
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 15
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 12
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 8
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  fish:
+    type: FISH
+    amount: 8
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 48
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 24
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 48
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 6
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 8
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 4
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  eat:
+    type: CONSUME
+    amount: 15
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 96
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 150
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 8
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 150
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 30
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 24
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 750
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 450
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 150
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 45
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  playtime:
+    type: PLAYTIME
+    amount: 40
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+rookie:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 128
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 64
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 128
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 32
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 24
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 128
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 64
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 64
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 64
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 20
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 20
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 16
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 10
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  fish:
+    type: FISH
+    amount: 10
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 64
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 32
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 64
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 8
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 10
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 6
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 6
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  eat:
+    type: CONSUME
+    amount: 20
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 128
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 200
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 10
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 200
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 40
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 32
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 1000
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 600
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 200
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 60
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 600
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 600
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  playtime:
+    type: PLAYTIME
+    amount: 50
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+skilled:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 192
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 96
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 192
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 48
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 36
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 192
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 96
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 96
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 96
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 30
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 30
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 24
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 15
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 15
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  fish:
+    type: FISH
+    amount: 15
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 96
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 48
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 96
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 12
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 15
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 9
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 9
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 3
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 6
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  eat:
+    type: CONSUME
+    amount: 30
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 192
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 300
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 15
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 300
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 60
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 48
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 1500
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 900
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 300
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 90
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 900
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 900
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 600
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  playtime:
+    type: PLAYTIME
+    amount: 60
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+expert:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 256
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 128
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 256
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 64
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 48
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 64
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 8
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 256
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 128
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 128
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 128
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 40
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 40
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 32
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 20
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 20
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  fish:
+    type: FISH
+    amount: 20
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 128
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 64
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 128
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 16
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 20
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 12
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 12
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 4
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 8
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 12
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  eat:
+    type: CONSUME
+    amount: 40
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 256
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 400
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 20
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 400
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 80
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 64
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 2000
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 1200
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 400
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 120
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 1200
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 1200
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 800
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  playtime:
+    type: PLAYTIME
+    amount: 70
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+master:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 320
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 160
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 320
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 80
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 60
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 80
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 10
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  place:
+    type: PLACE_BLOCK
+    amount: 320
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 160
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 160
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 160
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 50
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 50
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 40
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 25
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 25
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  blaze:
+    type: KILL_ENTITY
+    targets: ['BLAZE']
+    amount: 40
+    display: '&f擊殺 %amount% 隻烈焰使者'
+    icon: BLAZE_ROD
+  fish:
+    type: FISH
+    amount: 25
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 160
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 80
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 160
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 20
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 25
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 15
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 15
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 5
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 10
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 15
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  eat:
+    type: CONSUME
+    amount: 50
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 320
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 500
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 25
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 500
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 100
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 80
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 2500
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 1500
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 500
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 150
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 1500
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 1500
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 1000
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  playtime:
+    type: PLAYTIME
+    amount: 80
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+grandmaster:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 416
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 208
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 416
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 104
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 78
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 104
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 13
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  debris:
+    type: BREAK_BLOCK
+    targets: ['ANCIENT_DEBRIS']
+    amount: 6
+    display: '&f挖掘 %amount% 個遠古遺骸'
+    icon: ANCIENT_DEBRIS
+  place:
+    type: PLACE_BLOCK
+    amount: 416
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 208
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 208
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 208
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 65
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 65
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 52
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 32
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 32
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  blaze:
+    type: KILL_ENTITY
+    targets: ['BLAZE']
+    amount: 52
+    display: '&f擊殺 %amount% 隻烈焰使者'
+    icon: BLAZE_ROD
+  witherskel:
+    type: KILL_ENTITY
+    targets: ['WITHER_SKELETON']
+    amount: 32
+    display: '&f擊殺 %amount% 隻凋零骷髏'
+    icon: WITHER_SKELETON_SKULL
+  fish:
+    type: FISH
+    amount: 32
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 208
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 104
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 208
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 26
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 32
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 20
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 20
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 6
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 13
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 20
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  eat:
+    type: CONSUME
+    amount: 65
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 416
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 650
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 32
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 650
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 130
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 104
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 3250
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 1950
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 650
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 195
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 1950
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 1950
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 1300
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  elytra:
+    type: ELYTRA
+    amount: 6500
+    display: '&f用鞘翅飛行 %amount% 格'
+    icon: ELYTRA
+  playtime:
+    type: PLAYTIME
+    amount: 90
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+
+legend:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 512
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 256
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 512
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 128
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 96
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 128
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 16
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  debris:
+    type: BREAK_BLOCK
+    targets: ['ANCIENT_DEBRIS']
+    amount: 8
+    display: '&f挖掘 %amount% 個遠古遺骸'
+    icon: ANCIENT_DEBRIS
+  place:
+    type: PLACE_BLOCK
+    amount: 512
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 256
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 256
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 256
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 80
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 80
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 64
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 40
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 40
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  blaze:
+    type: KILL_ENTITY
+    targets: ['BLAZE']
+    amount: 64
+    display: '&f擊殺 %amount% 隻烈焰使者'
+    icon: BLAZE_ROD
+  witherskel:
+    type: KILL_ENTITY
+    targets: ['WITHER_SKELETON']
+    amount: 40
+    display: '&f擊殺 %amount% 隻凋零骷髏'
+    icon: WITHER_SKELETON_SKULL
+  fish:
+    type: FISH
+    amount: 40
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 256
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 128
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 256
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 32
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 40
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 24
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 24
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 8
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 16
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 24
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  smith:
+    type: SMITHING
+    amount: 1
+    display: '&f使用鍛造台 %amount% 次'
+    icon: SMITHING_TABLE
+  eat:
+    type: CONSUME
+    amount: 80
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 512
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 800
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 40
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 800
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 160
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 128
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 4000
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 2400
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 800
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 240
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 2400
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 2400
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 1600
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  elytra:
+    type: ELYTRA
+    amount: 8000
+    display: '&f用鞘翅飛行 %amount% 格'
+    icon: ELYTRA
+  playtime:
+    type: PLAYTIME
+    amount: 100
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+  raid:
+    type: RAID_WIN
+    amount: 1
+    display: '&f打贏 %amount% 場突襲'
+    icon: TOTEM_OF_UNDYING
+
+myth:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 640
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 320
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 640
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 160
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 120
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 160
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 20
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  debris:
+    type: BREAK_BLOCK
+    targets: ['ANCIENT_DEBRIS']
+    amount: 10
+    display: '&f挖掘 %amount% 個遠古遺骸'
+    icon: ANCIENT_DEBRIS
+  place:
+    type: PLACE_BLOCK
+    amount: 640
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 320
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 320
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 320
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 100
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 100
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 80
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 50
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 50
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  blaze:
+    type: KILL_ENTITY
+    targets: ['BLAZE']
+    amount: 80
+    display: '&f擊殺 %amount% 隻烈焰使者'
+    icon: BLAZE_ROD
+  witherskel:
+    type: KILL_ENTITY
+    targets: ['WITHER_SKELETON']
+    amount: 50
+    display: '&f擊殺 %amount% 隻凋零骷髏'
+    icon: WITHER_SKELETON_SKULL
+  fish:
+    type: FISH
+    amount: 50
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 320
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 160
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 320
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 40
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 50
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 30
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 30
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 10
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 20
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 30
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  smith:
+    type: SMITHING
+    amount: 1
+    display: '&f使用鍛造台 %amount% 次'
+    icon: SMITHING_TABLE
+  eat:
+    type: CONSUME
+    amount: 100
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 640
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 1000
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 50
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 1000
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 200
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 160
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 5000
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 3000
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 1000
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 300
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 3000
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 3000
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 2000
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  elytra:
+    type: ELYTRA
+    amount: 10000
+    display: '&f用鞘翅飛行 %amount% 格'
+    icon: ELYTRA
+  playtime:
+    type: PLAYTIME
+    amount: 110
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+  raid:
+    type: RAID_WIN
+    amount: 1
+    display: '&f打贏 %amount% 場突襲'
+    icon: TOTEM_OF_UNDYING
+
+creator:
+  stone:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:base_stone_overworld']
+    amount: 768
+    display: '&f挖掘 %amount% 個石頭'
+    icon: STONE
+  logs:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:logs']
+    amount: 384
+    display: '&f砍伐 %amount% 個原木'
+    icon: OAK_LOG
+  dirt:
+    type: BREAK_BLOCK
+    targets: ['DIRT', 'GRASS_BLOCK', 'SAND', 'GRAVEL']
+    amount: 768
+    display: '&f挖掘 %amount% 個泥土、沙或礫石'
+    icon: DIRT
+  coal:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:coal_ores']
+    amount: 192
+    display: '&f挖掘 %amount% 個煤礦'
+    icon: COAL_ORE
+  iron:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:iron_ores']
+    amount: 144
+    display: '&f挖掘 %amount% 個鐵礦'
+    icon: IRON_ORE
+  quartz:
+    type: BREAK_BLOCK
+    targets: ['NETHER_QUARTZ_ORE']
+    amount: 192
+    display: '&f挖掘 %amount% 個下界石英礦'
+    icon: QUARTZ
+  diamond:
+    type: BREAK_BLOCK
+    targets: ['#minecraft:diamond_ores']
+    amount: 24
+    display: '&f挖掘 %amount% 個鑽石礦'
+    icon: DIAMOND_ORE
+  debris:
+    type: BREAK_BLOCK
+    targets: ['ANCIENT_DEBRIS']
+    amount: 12
+    display: '&f挖掘 %amount% 個遠古遺骸'
+    icon: ANCIENT_DEBRIS
+  place:
+    type: PLACE_BLOCK
+    amount: 768
+    display: '&f放置 %amount% 個方塊'
+    icon: BRICKS
+  wheat:
+    type: HARVEST
+    targets: ['WHEAT']
+    amount: 384
+    display: '&f收成 %amount% 株成熟小麥'
+    icon: WHEAT
+  roots:
+    type: HARVEST
+    targets: ['POTATOES', 'CARROTS', 'BEETROOTS']
+    amount: 384
+    display: '&f收成 %amount% 株成熟馬鈴薯、胡蘿蔔或甜菜根'
+    icon: CARROT
+  cane:
+    type: HARVEST
+    targets: ['SUGAR_CANE']
+    amount: 384
+    display: '&f收成 %amount% 個甘蔗'
+    icon: SUGAR_CANE
+  zombie:
+    type: KILL_ENTITY
+    targets: ['ZOMBIE', 'HUSK', 'DROWNED', 'ZOMBIE_VILLAGER']
+    amount: 120
+    display: '&f擊殺 %amount% 隻殭屍'
+    icon: ROTTEN_FLESH
+  skeleton:
+    type: KILL_ENTITY
+    targets: ['SKELETON', 'STRAY', 'BOGGED']
+    amount: 120
+    display: '&f擊殺 %amount% 隻骷髏'
+    icon: BONE
+  spider:
+    type: KILL_ENTITY
+    targets: ['SPIDER', 'CAVE_SPIDER']
+    amount: 96
+    display: '&f擊殺 %amount% 隻蜘蛛'
+    icon: STRING
+  creeper:
+    type: KILL_ENTITY
+    targets: ['CREEPER']
+    amount: 60
+    display: '&f擊殺 %amount% 隻苦力怕'
+    icon: GUNPOWDER
+  enderman:
+    type: KILL_ENTITY
+    targets: ['ENDERMAN']
+    amount: 60
+    display: '&f擊殺 %amount% 隻終界使者'
+    icon: ENDER_PEARL
+  blaze:
+    type: KILL_ENTITY
+    targets: ['BLAZE']
+    amount: 96
+    display: '&f擊殺 %amount% 隻烈焰使者'
+    icon: BLAZE_ROD
+  witherskel:
+    type: KILL_ENTITY
+    targets: ['WITHER_SKELETON']
+    amount: 60
+    display: '&f擊殺 %amount% 隻凋零骷髏'
+    icon: WITHER_SKELETON_SKULL
+  fish:
+    type: FISH
+    amount: 60
+    display: '&f釣到 %amount% 次東西'
+    icon: FISHING_ROD
+  smelt:
+    type: SMELT
+    amount: 384
+    display: '&f從熔爐取出 %amount% 個成品'
+    icon: FURNACE
+  ironingot:
+    type: SMELT
+    targets: ['IRON_INGOT']
+    amount: 192
+    display: '&f熔煉 %amount% 個鐵錠'
+    icon: IRON_INGOT
+  craft:
+    type: CRAFT
+    amount: 384
+    display: '&f合成 %amount% 個物品'
+    icon: CRAFTING_TABLE
+  breed:
+    type: BREED
+    amount: 48
+    display: '&f繁殖 %amount% 次動物'
+    icon: HAY_BLOCK
+  tame:
+    type: TAME
+    amount: 1
+    display: '&f馴服 %amount% 隻動物'
+    icon: LEAD
+  shear:
+    type: SHEAR
+    targets: ['SHEEP']
+    amount: 60
+    display: '&f剪 %amount% 次羊毛'
+    icon: SHEARS
+  milk:
+    type: MILK
+    targets: ['COW', 'MOOSHROOM', 'GOAT']
+    amount: 36
+    display: '&f擠 %amount% 桶奶'
+    icon: MILK_BUCKET
+  trade:
+    type: TRADE
+    amount: 36
+    display: '&f與村民交易 %amount% 次'
+    icon: EMERALD
+  enchant:
+    type: ENCHANT
+    amount: 12
+    display: '&f附魔 %amount% 次'
+    icon: ENCHANTING_TABLE
+  anvil:
+    type: ANVIL
+    amount: 24
+    display: '&f使用鐵砧 %amount% 次'
+    icon: ANVIL
+  brew:
+    type: BREW
+    amount: 36
+    display: '&f釀造 %amount% 瓶藥水'
+    icon: BREWING_STAND
+  smith:
+    type: SMITHING
+    amount: 1
+    display: '&f使用鍛造台 %amount% 次'
+    icon: SMITHING_TABLE
+  eat:
+    type: CONSUME
+    amount: 120
+    display: '&f吃或喝 %amount% 次'
+    icon: COOKED_BEEF
+  pickup:
+    type: PICKUP
+    amount: 768
+    display: '&f撿起 %amount% 個物品'
+    icon: HOPPER
+  exp:
+    type: GAIN_EXP
+    amount: 1200
+    display: '&f獲得 %amount% 點經驗'
+    icon: EXPERIENCE_BOTTLE
+  level:
+    type: LEVEL_UP
+    amount: 60
+    display: '&f提升 %amount% 個等級'
+    icon: ENCHANTED_BOOK
+  jump:
+    type: JUMP
+    amount: 1200
+    display: '&f跳躍 %amount% 次'
+    icon: RABBIT_FOOT
+  sleep:
+    type: SLEEP
+    amount: 1
+    display: '&f在床上睡著 %amount% 次'
+    icon: RED_BED
+  bow:
+    type: SHOOT_BOW
+    amount: 240
+    display: '&f射出 %amount% 支箭'
+    icon: BOW
+  snowball:
+    type: THROW
+    targets: ['SNOWBALL', 'EGG']
+    amount: 192
+    display: '&f丟出 %amount% 顆雪球或雞蛋'
+    icon: SNOWBALL
+  walk:
+    type: WALK
+    amount: 6000
+    display: '&f行走 %amount% 格'
+    icon: LEATHER_BOOTS
+  sprint:
+    type: SPRINT
+    amount: 3600
+    display: '&f衝刺 %amount% 格'
+    icon: IRON_BOOTS
+  swim:
+    type: SWIM
+    amount: 1200
+    display: '&f游泳 %amount% 格'
+    icon: PRISMARINE_SHARD
+  climb:
+    type: CLIMB
+    amount: 360
+    display: '&f攀爬 %amount% 格'
+    icon: LADDER
+  boat:
+    type: BOAT
+    amount: 3600
+    display: '&f搭船移動 %amount% 格'
+    icon: OAK_BOAT
+  minecart:
+    type: MINECART
+    amount: 3600
+    display: '&f搭礦車移動 %amount% 格'
+    icon: MINECART
+  ride:
+    type: RIDE
+    amount: 2400
+    display: '&f騎乘生物移動 %amount% 格'
+    icon: SADDLE
+  elytra:
+    type: ELYTRA
+    amount: 12000
+    display: '&f用鞘翅飛行 %amount% 格'
+    icon: ELYTRA
+  playtime:
+    type: PLAYTIME
+    amount: 120
+    display: '&f在線 %amount% 分鐘'
+    icon: CLOCK
+  raid:
+    type: RAID_WIN
+    amount: 1
+    display: '&f打贏 %amount% 場突襲'
+    icon: TOTEM_OF_UNDYING

@@ -1,0 +1,184 @@
+# ==========================================================
+#  DailyQuest 階級（蓋章地圖／進度路線）
+#  由上到下依序升階；可以增減、改名、改格數。
+#  最後一階蓋滿後會停住，之後在下面加入新階級，玩家就會在下一次重置時升階。
+#  這個檔案只在不存在時產生，不會自動補齊。
+#
+#  display      顯示名稱
+#  icon         選單圖示
+#  cells        這一階要蓋幾個章才升階
+#  task-reward  這一階任務的預設完成獎勵（任務自己有 reward 時以任務為主）
+#  cell-rewards 蓋到第幾格時給的獎勵（可不設）；最後一格就是這一階的「底」
+#
+#  獎勵格式（可混搭，都可省略）：
+#    money: 100            錢（Vault）
+#    currency: 10          第二貨幣（config.yml 的 economy.second-currency）
+#    tickets: 1            補簽卷
+#    items:                物品
+#      - 'diamond 2'       材質 數量
+#      - item: 'minecraft:diamond_sword[enchantments={levels:{"minecraft:sharpness":5}}]'
+#        amount: 1         帶 NBT／元件的物品；手拿物品輸入 /dq admin itemstring 可取得字串
+#    commands:             以後台身分執行，%player% 會換成玩家名稱
+#      - 'say %player% 好棒'
+#    display:              自訂獎勵說明（不填會自動產生）
+#      - '&f神秘禮物'
+# ==========================================================
+
+tiers:
+  novice:
+    display: '&f新手'
+    icon: WOODEN_PICKAXE
+    cells: 20
+    task-reward:
+      money: 20
+    cell-rewards:
+      '10':
+        money: 200
+      '20':
+        money: 600
+        currency: 5
+        tickets: 1
+        items:
+          - 'diamond 1'
+  apprentice:
+    display: '&a見習'
+    icon: STONE_PICKAXE
+    cells: 25
+    task-reward:
+      money: 30
+    cell-rewards:
+      '12':
+        money: 300
+      '25':
+        money: 900
+        currency: 10
+        tickets: 1
+        items:
+          - 'diamond 2'
+  rookie:
+    display: '&2新秀'
+    icon: COPPER_PICKAXE
+    cells: 30
+    task-reward:
+      money: 45
+    cell-rewards:
+      '15':
+        money: 450
+      '30':
+        money: 1350
+        currency: 15
+        tickets: 1
+        items:
+          - 'diamond 3'
+  skilled:
+    display: '&b熟手'
+    icon: IRON_PICKAXE
+    cells: 35
+    task-reward:
+      money: 60
+      currency: 1
+    cell-rewards:
+      '17':
+        money: 600
+      '35':
+        money: 1800
+        currency: 20
+        tickets: 1
+        items:
+          - 'diamond 4'
+  expert:
+    display: '&3行家'
+    icon: GOLDEN_PICKAXE
+    cells: 40
+    task-reward:
+      money: 80
+      currency: 1
+    cell-rewards:
+      '20':
+        money: 800
+      '40':
+        money: 2400
+        currency: 25
+        tickets: 1
+        items:
+          - 'diamond 5'
+  master:
+    display: '&9大師'
+    icon: DIAMOND_PICKAXE
+    cells: 45
+    task-reward:
+      money: 100
+      currency: 2
+    cell-rewards:
+      '22':
+        money: 1000
+      '45':
+        money: 3000
+        currency: 30
+        tickets: 1
+        items:
+          - 'diamond 6'
+  grandmaster:
+    display: '&d宗師'
+    icon: NETHERITE_PICKAXE
+    cells: 50
+    task-reward:
+      money: 130
+      currency: 2
+    cell-rewards:
+      '25':
+        money: 1300
+      '50':
+        money: 3900
+        currency: 35
+        tickets: 1
+        items:
+          - 'diamond 7'
+  legend:
+    display: '&6傳奇'
+    icon: TOTEM_OF_UNDYING
+    cells: 55
+    task-reward:
+      money: 160
+      currency: 3
+    cell-rewards:
+      '27':
+        money: 1600
+      '55':
+        money: 4800
+        currency: 40
+        tickets: 1
+        items:
+          - 'diamond 8'
+  myth:
+    display: '&c神話'
+    icon: DRAGON_BREATH
+    cells: 60
+    task-reward:
+      money: 200
+      currency: 3
+    cell-rewards:
+      '30':
+        money: 2000
+      '60':
+        money: 6000
+        currency: 45
+        tickets: 1
+        items:
+          - 'diamond 9'
+  creator:
+    display: '&#ff55ff造物者'
+    icon: NETHER_STAR
+    cells: 65
+    task-reward:
+      money: 250
+      currency: 4
+    cell-rewards:
+      '32':
+        money: 2500
+      '65':
+        money: 7500
+        currency: 50
+        tickets: 1
+        items:
+          - 'diamond 10'
