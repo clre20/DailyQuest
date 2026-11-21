@@ -100,7 +100,9 @@ public final class DailyQuest extends JavaPlugin {
         for (Player p : Bukkit.getOnlinePlayers()) {
             playerListener.load(p);
         }
-        if (settings.updateCheckOnStartup && !settings.updateRepository.isEmpty()) {
+        if (getServer().getPluginManager().isPluginEnabled("HttpHub") && clre20.httpHub.api.HttpHubAPI.isAvailable()) {
+            clre20.httpHub.api.HttpHubAPI.registerUpdateCheck(this, "clre20/DailyQuest", getPluginMeta().getVersion(), "dailyquest.version", null);
+        } else if (settings.updateCheckOnStartup && !settings.updateRepository.isEmpty()) {
             updates.logStartup();
         }
         getLogger().info("Enabled: " + defs.tiers.size() + " tiers, " + defs.taskCount() + " tasks, storage "

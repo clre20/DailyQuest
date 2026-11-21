@@ -9,7 +9,7 @@ load: POSTWORLD
 
 authors: [ Clre20 ]
 website: https://github.com/clre20/DailyQuest
-softdepend: [ Vault, ExcellentEconomy, PlaceholderAPI ]
+softdepend: [ Vault, ExcellentEconomy, PlaceholderAPI, HttpHub ]
 
 commands:
   dailyquest:

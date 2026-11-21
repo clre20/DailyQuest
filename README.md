@@ -2,6 +2,9 @@
 
 DailyQuest 是 Paper 26.x 的每日任務插件。玩家每天從自己所在階級的任務池抽到 10 個任務，一天完成 5 個就能在「蓋章地圖」蓋一個章，同時累積連勝。地圖蓋滿就升到下一階，從新手一路到造物者；連勝中斷可以用補簽卷接回。所有操作都在箱子選單用左鍵完成，數值全部可以在設定檔修改。
 
+
+> **版本檢查提示**：若伺服器有安裝 [HttpHub](https://github.com/clre20/HttpHub)，本插件自動由 HttpHub 集中處理版本檢查與管理員登入通知，避免各插件自開連線與背景執行緒。
+
 ## 功能特性
 
 - **每日任務**
@@ -132,3 +135,45 @@ novice:
 
 - Paper 26.1 以上、Java 25
 - 選用：Vault＋經濟插件、ExcellentEconomy、PlaceholderAPI
+---
+
+# DailyQuest (English)
+
+DailyQuest is a daily quest plugin designed for Paper 26.x servers. Players receive 10 quests daily from their tier's quest pool, and completing 5 quests stamps their "Stamp Map", building up a win-streak. Completing maps advances players through 10 progression tiers (Novice to Creator). Missed days can be recovered using catch-up tickets. All interactions happen within an intuitive chest GUI with left-clicks, and all values are fully configurable.
+
+> **Update Checker Notice**: When [HttpHub](https://github.com/clre20/HttpHub) is installed on the server, update checking and admin login alerts are handled centrally by HttpHub via virtual threads, eliminating redundant threads and network connections.
+
+## Features
+
+- **Daily Quests**
+  - Weighted selection of 10 non-duplicate quests daily, resetting at 00:00 (timezone & reset time configurable).
+  - 5 daily re-rolls to swap a single quest for another from the same tier.
+  - 34 quest types: Mine, Place, Harvest, Kill, Craft, Smelt, Fish, Breed, Tame, Shear, Milk, Trade, Enchant, Anvil, Smith, Brew, Consume, Pick-up, Shoot, Throw, Exp, Level-up, Jump, Sleep, Raid, Walk, Sprint, Swim, Climb, Boat, Minecart, Ride, Elytra, and Playtime.
+  - Targets support materials, entities, and tags (e.g. `#minecraft:logs`).
+- **Dual Progression Paths**
+  - Progression Map (Stamp Map): 10 tiers starting with 20 tiles (+5 per tier). Every tile has configurable rewards.
+  - Win-Streak Path: 50 milestones with periodic rewards and custom milestone prizes.
+- **Catch-up Tickets**
+  - Stored numerically without physical items, preventing duplication or trade exploits.
+  - Login alerts when a streak is broken; players click to patch missed days.
+- **Rewards**
+  - Supports Vault money, secondary currency (ExcellentEconomy), catch-up tickets, items (with NBT / Components), and console commands.
+  - Full inventory overflow protection: excess items go into a pending claim list.
+- **Anti-Exploit Protections**
+  - Player-placed blocks, generator-created blocks, spawners, spawn-egg mobs, dropped items, and Creative mode actions do not count.
+- **Admin Dashboard**
+  - `/dq admin` opens an interactive player dashboard to adjust stamps, streaks, tickets, and complete quests.
+
+## Requirements
+
+- Paper 26.3 (Stable) or higher (Java 25).
+- Vault & Economy plugin.
+
+## Commands & Permissions
+
+| Command | Description | Sender | Permission | Default |
+|---|---|---|---|---|
+| `/dq` | Open Daily Quest GUI | Player | `dailyquest.use` | Everyone |
+| `/dq admin` | Open admin GUI | Player / Console | `dailyquest.admin` | OP |
+| `/dq version` | Check version and updates | Player / Console | `dailyquest.version` | OP |
+| `/dq reload` | Reload configuration | Player / Console | `dailyquest.reload` | OP |
